@@ -16,6 +16,23 @@ import * as VARS from "./Constants";
 
 import { GetData, GetAllProblems } from "./Utils";
 
+// import { Root, Text } from '@react-three/uikit'
+import { Fullscreen, Container, Root, Text } from '@react-three/uikit'
+// '@pmndrs/uikit';
+import { MeshPhongMaterial } from 'three';
+
+const UserScore = 21;
+
+
+class FancyMaterial extends MeshPhongMaterial {
+  constructor() {
+    super({
+      specular: 0x005555,
+      shininess: 100,
+    })
+  }
+}
+
 
 export default function App() {
 
@@ -142,7 +159,6 @@ const FollowPathCamera = () => {
 
   return (
     <div className="App">
-<div>hi</div>
       <Canvas                 
           camera={{
                     fov: 75,
@@ -255,8 +271,33 @@ const FollowPathCamera = () => {
         
         <Environment preset="sunset" background backgroundBlurriness={0.5} />
         </Suspense>
+        <Fullscreen flexDirection="row" padding={20} gap={10}>
+          <Container flexGrow={1} backgroundOpacity={0.05} hover={{ backgroundOpacity: 1 }} backgroundColor="red">
+          </Container>
+          <Container flexGrow={1} backgroundOpacity={0.05} hover={{ backgroundOpacity: 1 }} backgroundColor="green">
+          </Container>          
+          <Container flexGrow={1} backgroundOpacity={0.05} hover={{ backgroundOpacity: 1 }} backgroundColor="blue">
+          <Text
+            backgroundColor="grey"
+            color="white"
+            maxHeight={100}
+            padding={24}
+            borderRadius={32}
+            fontSize={32}
+            borderColor="blue"
+            borderBend={0.3}
+            borderWidth={20}
+            panelMaterialClass={FancyMaterial}
+          >
+           SCORE: { UserScore }
+      </Text>
+          </Container>
+      </Fullscreen>
         
       </Canvas>
+      <div className="RoundedRect">
+                This is a mess
+      </div>
     </div>
   );
 }
