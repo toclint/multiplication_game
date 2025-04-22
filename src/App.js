@@ -105,7 +105,7 @@ const SHIPS_GROUP1_Z = -300;
 const SHIPS_GROUP2_Z = -600;
 const SHIPS_GROUP3_Z = -900;
 
-
+const [score, setScore] = useState(0);
 // const SHIP_ROTATION_INTENSITY = 1;
 
 const FollowPathCamera = () => {
@@ -178,15 +178,15 @@ const FollowPathCamera = () => {
         rotationIntensity={.5} // XYZ rotation intensity, defaults to 1
         floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
         floatingRange={[1, 2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-        ><Balloon rotation={[0, 120, 0]} position={[-20.75, 0, 0]} name="BE" numerator={Problems.VALUES[0][0].numerator} denominator={Problems.VALUES[0][0].denominator} answer={Problems.VALUES[0][0].answer}/> 
+        ><Balloon rotation={[0, 120, 0]} position={[-20.75, 0, 0]} name="GROUP1_BALOON1" numerator={Problems.VALUES[0][0].numerator} denominator={Problems.VALUES[0][0].denominator} answer={Problems.VALUES[0][0].answer} iscorrect={Problems.VALUES[0][0].iscorrect} /> 
         </Float>            
 
         <Float
-        speed={3} // Animation speed, defaults to 1
+        speed={3} // Animation speed, defaults to 1npm
         rotationIntensity={1} // XYZ rotation intensity, defaults to 1
         floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
         floatingRange={[1, 2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-        ><Balloon rotation={[0, 0, 0]} position={[15.75, 0, 0]} name="CE" numerator={Problems.VALUES[0][1].numerator} denominator={Problems.VALUES[0][1].denominator} answer={Problems.VALUES[0][1].answer}/>
+        ><Balloon rotation={[0, 0, 0]} position={[15.75, 0, 0]} name="GROUP1_BALOON2" numerator={Problems.VALUES[0][1].numerator} denominator={Problems.VALUES[0][1].denominator} answer={Problems.VALUES[0][1].answer} iscorrect={Problems.VALUES[0][0].iscorrect} />
         </Float>     
 
         <Float
@@ -194,7 +194,7 @@ const FollowPathCamera = () => {
         rotationIntensity={1} // XYZ rotation intensity, defaults to 1
         floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
         floatingRange={[1, 2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-        ><Balloon rotation={[0, -120, 0]} position={[65.75, 0, 0]} name="DE" numerator={Problems.VALUES[0][2].numerator} denominator={Problems.VALUES[0][2].denominator} answer={Problems.VALUES[0][2].answer}/>
+        ><Balloon rotation={[0, -120, 0]} position={[65.75, 0, 0]} name="GROUP1_BALOON3" numerator={Problems.VALUES[0][2].numerator} denominator={Problems.VALUES[0][2].denominator} answer={Problems.VALUES[0][2].answer} iscorrect={Problems.VALUES[0][0].iscorrect} />
         </Float>                 
 
 /***** SPACESHIPS  ***/
@@ -272,11 +272,11 @@ const FollowPathCamera = () => {
         <Environment preset="sunset" background backgroundBlurriness={0.5} />
         </Suspense>
         <Fullscreen flexDirection="row" padding={20} gap={10}>
-          <Container flexGrow={1} backgroundOpacity={0.05} hover={{ backgroundOpacity: 1 }} backgroundColor="red">
+          <Container flexGrow={1} backgroundOpacity={0.05} hover={{ backgroundOpacity: 0.01 }} backgroundColor="red">
           </Container>
-          <Container flexGrow={1} backgroundOpacity={0.05} hover={{ backgroundOpacity: 1 }} backgroundColor="green">
+          <Container flexGrow={1} backgroundOpacity={0.05} hover={{ backgroundOpacity: 0.01 }} backgroundColor="green">
           </Container>          
-          <Container flexGrow={1} backgroundOpacity={0.05} hover={{ backgroundOpacity: 1 }} backgroundColor="blue">
+          <Container flexGrow={1} backgroundOpacity={0.05} hover={{ backgroundOpacity: 0.01 }} backgroundColor="blue">
           <Text
             backgroundColor="grey"
             color="white"
@@ -289,10 +289,15 @@ const FollowPathCamera = () => {
             borderWidth={20}
             panelMaterialClass={FancyMaterial}
           >
-           SCORE: { UserScore }
+           SCORE: { score }
       </Text>
           </Container>
+
+
+
       </Fullscreen>
+
+
         
       </Canvas>
       <div className="RoundedRect">

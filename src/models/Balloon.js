@@ -1,10 +1,28 @@
 import React, { useRef } from 'react'
 import { useGLTF, Text, Line } from '@react-three/drei'
 
+
+const handleClick = (event, name, numerator, denominator, answer) => {
+  // Handle the click event
+  console.log('Model clicked! denominator: ' + denominator + " x numerator " + numerator + " = " + answer);
+  console.log(" Correct? " + (numerator*denominator == answer)  + " event: " + event);
+  event.stopPropagation();
+  // Perform actions like changing the model's color or playing an animation
+};
+
+const onClickHandler = param => e => {
+  // param is the argument you passed to the function
+  // e is the event object that returned
+};
+
+const onClicked = (_name) => {
+  console.log('Baloon clicked !', _name);
+}
+
 export function Balloon(props) {
   const { nodes, materials } = useGLTF('/hot_air_balloon.glb')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} onClick={ (event) => handleClick(event, props.name, props.numerator, props.denominator, props.answer) }>
       <group scale={0.01}>
         <mesh
           castShadow
